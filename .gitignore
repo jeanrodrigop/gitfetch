@@ -1,0 +1,13 @@
+.vercel
+node_modules
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
