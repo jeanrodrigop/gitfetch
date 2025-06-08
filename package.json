@@ -1,0 +1,17 @@
+{
+  "name": "gitfetch-final",
+  "version": "1.0.0",
+  "main": "api/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Dynamic GitHub stats card with a neofetch look",
+  "dependencies": {
+    "asciify-image": "^0.1.1",
+    "node-fetch": "^3.3.2"
+  }
+}
