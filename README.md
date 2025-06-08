@@ -1,5 +1,12 @@
-
------
+<h1 align="center">
+  <a href="https://gitfetch-flax.vercel.app/api?username=jeanrodrigop" target="_blank">
+    <img 
+      alt="gitfetch" 
+      title="gitfetch" 
+      src="https://gitfetch-flax.vercel.app/api?username=jeanrodrigop" 
+    />
+  </a>
+</h1>
 
 # [WIP] GitFetch: Neofetch-Style GitHub Stats Card
 
