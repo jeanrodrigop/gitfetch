@@ -1,9 +1,9 @@
 <h1 align="center">
-  <a href="https://gitfetch-flax.vercel.app/api?username=jeanrodrigop" target="_blank">
+  <a href="https://gitfetch-flax.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE" target="_blank">
     <img 
       alt="gitfetch" 
       title="gitfetch" 
-      src="https://gitfetch-flax.vercel.app/api?username=jeanrodrigop" 
+      src="https://gitfetch-flax.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE" 
     />
   </a>
 </h1>
@@ -44,7 +44,7 @@ You can deploy your own instance of GitFetch or use the public one.
 To add the GitFetch card to your `README.md`, simply copy the following Markdown code and replace `your-github-user` with your GitHub username.
 
 ```markdown
-![GitFetch](https://gitfetch-card.vercel.app/api?username=your-github-user)
+![GitFetch](https://gitfetch-flax.vercel.app/api?username=your-github-user)
 ```
 
 #### Customization Options
@@ -75,12 +75,12 @@ You can customize the card's appearance with URL parameters:
   * **Example of URL**
 
     ```markdown
-    https://gitfetch-card.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE
+    https://gitfetch-flax.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE
     ``` 
   * **To use in your README**
 
     ```markdown
-    ![GitFetch](https://gitfetch-card.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE)
+    ![GitFetch](https://gitfetch-flax.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE)
     ```
 
 ## Running Locally
