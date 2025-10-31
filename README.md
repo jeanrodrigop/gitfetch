@@ -51,16 +51,36 @@ To add the GitFetch card to your `README.md`, simply copy the following Markdown
 
 You can customize the card's appearance with URL parameters:
 
-  - **Themes**: Use the `theme` parameter to change the look.
+  * **`theme`**: `light` or `default`: Use the theme parameter to change the look.
+  
+      ```markdown
+      ...&theme=light
+      ```
+  * **`image_url`**: Use image_url to replace your avatar with a custom image.
+  
+      ```markdown
+      ...&image_url=[https://your-image-path.png](https://your-image-path.png)
+      ```
+  * **Informations**: Add information that is not in the GitHub API.
+  
+    * `country` (Ex.: Brazil)
+    * `state` (Ex.: Sao Paulo)
+    * `since` (Ex.: 1993)
+    * `timezone` (Ex.: UTC-03)
+    * `portfolio` (Ex.: My page)
+    * `distros` (Ex.: Manjaro, Fedora)
+    * `like` (Ex.: Virtualization)
+    * `role` (Ex.: Cloud/DevOps/SRE)
+
+  * **Example of URL**
 
     ```markdown
-    ![GitFetch](https://gitfetch-stats.vercel.app/api?username=your-github-user&theme=light)
-    ```
-
-  - **Custom Image**: Use `image_url` to replace your avatar with a custom image.
+    https://gitfetch-card.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE
+    ``` 
+  * **To use in your README**
 
     ```markdown
-    ![GitFetch](https://gitfetch-stats.vercel.app/api?username=your-github-user&image_url=https://your-image-path.png)
+    ![GitFetch](https://gitfetch-card.vercel.app/api?username=jeanrodrigop&country=Brazil&state=Sao%20Paulo&since=1993&timezone=UTC-03&portfolio=Github&distros=Manjaro,%20Fedora&like=Virtualization&role=Cloud/DevOps/SRE)
     ```
 
 ## Running Locally
