@@ -33,9 +33,9 @@ function escapeXml(str) {
 }
 
 /**
- * @param {string} asciiArt
+ * @param {string} asciiArt 
  * @param {object} user 
- * @param {object} customData
+ * @param {object} customData 
  * @param {object} options 
  */
 export function renderSvg(asciiArt, user, customData = {}, options = {}) {
@@ -43,8 +43,7 @@ export function renderSvg(asciiArt, user, customData = {}, options = {}) {
 
   const topPrompt = `
     <text x="20" y="35" class="prompt-text">
-      <tspan fill="${theme.prompt}">${escapeXml(user.login)}@github</tspan>
-      <tspan fill="${theme.text}">:~$ gitfetch</tspan>
+      <tspan fill="${theme.prompt}">${escapeXml(user.login)}@github</tspan><tspan fill="${theme.text}">:~$ gitfetch</tspan>
     </text>
   `;
 
@@ -65,10 +64,10 @@ export function renderSvg(asciiArt, user, customData = {}, options = {}) {
     { label: 'Like', value: customData.like },
     { label: 'Role', value: customData.role },
   ];
-
-  const infoStartX = 380;
-  const infoStartY = 60;
-  const infoLineHeight = 22;
+  
+  const infoStartX = 380; 
+  const infoStartY = 60;  
+  const infoLineHeight = 22; 
 
   const infoHeader = `
     <text x="${infoStartX}" y="${infoStartY}" class="info-header" fill="${theme.prompt}">
@@ -84,7 +83,6 @@ export function renderSvg(asciiArt, user, customData = {}, options = {}) {
 
   const infoElements = info.map((item, index) => {
     const yPos = (infoStartY + 35) + (index * infoLineHeight); 
-    
     if (item.value) {
       return `
         <text x="${infoStartX}" y="${yPos}" class="info-text">
@@ -101,7 +99,7 @@ export function renderSvg(asciiArt, user, customData = {}, options = {}) {
     const spacing = 5;
     const row = index < 8 ? 0 : 1;
     const col = index % 8;
-
+    
     const xPos = infoStartX + col * (rectSize + spacing);
     const yPos = (infoStartY + 35) + (info.length * infoLineHeight) + (row * (rectSize + spacing)) + 10;
     
@@ -110,16 +108,22 @@ export function renderSvg(asciiArt, user, customData = {}, options = {}) {
 
   const bottomPrompt = `
     <text x="20" y="380" class="prompt-text">
-      <tspan fill="${theme.prompt}">${escapeXml(user.login)}@github</tspan>
-      <tspan fill="${theme.text}">:~$ </tspan>
+      <tspan fill="${theme.prompt}">${escapeXml(user.login)}@github</tspan><tspan fill="${theme.text}">:~$ </tspan>
     </text>
   `;
 
   return `
     <svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
-      <rect width="100%" height="100%" fill="${theme.bg}" rx="10" ry="10"/>
+      <rect 
+        width="100%" 
+        height="100%" 
+        fill="${theme.bg}" 
+        rx="10" 
+        ry="10" 
+        stroke="${theme.text}" 
+        stroke-width="1px"
+      />
       <style>
-        /* Fontes: Monospace para ASCII e prompts, UI para o texto de info */
         .ascii-art { font-family: 'Monaco', 'Courier New', monospace; font-size: 12px; fill: ${theme.text}; white-space: pre; }
         .prompt-text { font-family: 'Monaco', 'Courier New', monospace; font-size: 14px; white-space: pre; }
         .info-header { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: bold; }
