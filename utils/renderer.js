@@ -47,19 +47,20 @@ export function renderSvg(asciiData, user, customData = {}, options = {}) {
     </text>
   `;  
 
+  const fontSize = 10;
   const lineHeight = 13;
+  const startY = 55;
   
   const asciiElements = asciiData.map((row, rowIndex) => {
     let rowSvg = '';
     let currentBuffer = '';
     let currentColor = '';
-    let startX = 20;
     
     const flushBuffer = (color) => {
       if (!currentBuffer) return '';
-      const encoded = escapeXml(currentBuffer).replace(/ /g, '&#160;');
-      const fill = color || theme.text; 
-      return `<tspan fill="${fill}">${encoded}</tspan>`;
+      const encoded = escapeXml(currentBuffer).replace(/ /g, '&#160;'); 
+      if (!color) return `<tspan>${encoded}</tspan>`; 
+      return `<tspan fill="${color}">${encoded}</tspan>`;
     };
 
     row.forEach((pixel) => {
@@ -73,7 +74,7 @@ export function renderSvg(asciiData, user, customData = {}, options = {}) {
     });
     rowSvg += flushBuffer(currentColor);
 
-    return `<text x="20" y="${60 + (rowIndex * lineHeight)}" class="ascii-art" xml:space="preserve">${rowSvg}</text>`;
+    return `<text x="20" y="${startY + (rowIndex * lineHeight)}" class="ascii-art" xml:space="preserve">${rowSvg}</text>`;
   }).join('');
 
   const info = [
@@ -148,11 +149,10 @@ export function renderSvg(asciiData, user, customData = {}, options = {}) {
         stroke-width="1px"
       />
       <style>
-        /* Fonte ajustada para garantir alinhamento do ASCII */
-        .ascii-art { font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; white-space: pre; }
-        .prompt-text { font-family: 'Courier New', Courier, monospace; font-size: 14px; white-space: pre; }
+        .ascii-art { font-family: 'Monaco', 'Courier New', monospace; font-size: ${fontSize}px; font-weight: bold; white-space: pre; }
+        .prompt-text { font-family: 'Monaco', 'Courier New', monospace; font-size: 14px; white-space: pre; }
         .info-header { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: bold; }
-        .info-separator { font-family: 'Courier New', Courier, monospace; font-size: 14px; }
+        .info-separator { font-family: 'Monaco', 'Courier New', monospace; font-size: 14px; }
         .info-text { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; }
       </style>
       
