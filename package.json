@@ -11,7 +11,7 @@
   "license": "ISC",
   "description": "Dynamic GitHub stats card with a neofetch look",
   "dependencies": {
-    "asciify-image": "^0.1.1",
+    "jimp": "^0.22.10",
     "node-fetch": "^3.3.2"
   }
 }

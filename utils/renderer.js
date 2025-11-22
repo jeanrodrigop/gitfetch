@@ -33,24 +33,48 @@ function escapeXml(str) {
 }
 
 /**
- * @param {string} asciiArt 
+ * @param {Array} asciiData 
  * @param {object} user 
  * @param {object} customData 
  * @param {object} options 
  */
-export function renderSvg(asciiArt, user, customData = {}, options = {}) {
+export function renderSvg(asciiData, user, customData = {}, options = {}) {
   const theme = THEMES[options.theme] || THEMES.default;
 
   const topPrompt = `
     <text x="20" y="35" class="prompt-text">
       <tspan fill="${theme.prompt}">${escapeXml(user.login)}@github</tspan><tspan fill="${theme.text}">:~$ gitfetch</tspan>
     </text>
-  `;
+  `;  
 
-  const asciiLines = asciiArt.split('\n');
-  const asciiElements = asciiLines.map((line, index) => 
-    `<tspan x="20" y="${60 + (index * 15)}">${escapeXml(line).replace(/ /g, '&nbsp;')}</tspan>`
-  ).join('');
+  const lineHeight = 13;
+  
+  const asciiElements = asciiData.map((row, rowIndex) => {
+    let rowSvg = '';
+    let currentBuffer = '';
+    let currentColor = '';
+    let startX = 20;
+    
+    const flushBuffer = (color) => {
+      if (!currentBuffer) return '';
+      const encoded = escapeXml(currentBuffer).replace(/ /g, '&#160;');
+      const fill = color || theme.text; 
+      return `<tspan fill="${fill}">${encoded}</tspan>`;
+    };
+
+    row.forEach((pixel) => {
+        if (pixel.color !== currentColor) {
+            rowSvg += flushBuffer(currentColor);
+            currentColor = pixel.color;
+            currentBuffer = pixel.char;
+        } else {
+            currentBuffer += pixel.char;
+        }
+    });
+    rowSvg += flushBuffer(currentColor);
+
+    return `<text x="20" y="${60 + (rowIndex * lineHeight)}" class="ascii-art" xml:space="preserve">${rowSvg}</text>`;
+  }).join('');
 
   const info = [
     { label: 'Name', value: user.name || 'N/A' },
@@ -124,15 +148,19 @@ export function renderSvg(asciiArt, user, customData = {}, options = {}) {
         stroke-width="1px"
       />
       <style>
-        .ascii-art { font-family: 'Monaco', 'Courier New', monospace; font-size: 12px; fill: ${theme.text}; white-space: pre; }
-        .prompt-text { font-family: 'Monaco', 'Courier New', monospace; font-size: 14px; white-space: pre; }
+        /* Fonte ajustada para garantir alinhamento do ASCII */
+        .ascii-art { font-family: 'Courier New', Courier, monospace; font-size: 11px; font-weight: bold; white-space: pre; }
+        .prompt-text { font-family: 'Courier New', Courier, monospace; font-size: 14px; white-space: pre; }
         .info-header { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 18px; font-weight: bold; }
-        .info-separator { font-family: 'Monaco', 'Courier New', monospace; font-size: 14px; }
-        .info-text { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 16px; }
+        .info-separator { font-family: 'Courier New', Courier, monospace; font-size: 14px; }
+        .info-text { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; font-size: 15px; }
       </style>
       
       ${topPrompt}
-      <text class="ascii-art">${asciiElements}</text>
+      
+      <g transform="translate(0, 0)">
+        ${asciiElements}
+      </g>
       
       ${infoHeader}
       ${infoSeparator}

@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   try {
     const user = await getGithubProfile(username);
     
-    const asciiArt = await generateAscii(image_url || user.avatar_url);
+    const asciiData = await generateAscii(image_url || user.avatar_url);
 
     const customData = {
       country,
@@ -37,10 +37,10 @@ export default async function handler(req, res) {
       role,
     };
 
-    const svgOutput = renderSvg(asciiArt, user, customData, { theme });
+    const svgOutput = renderSvg(asciiData, user, customData, { theme });
 
     res.setHeader('Content-Type', 'image/svg+xml');
-    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.setHeader('Cache-Control', 'public, max-age=14400');
     
     res.status(200).send(svgOutput);
   } catch (err) {
